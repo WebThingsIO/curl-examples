@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e
 
 if [ ! -e .jwt ]; then
   echo "Please create the .jwt file using login.sh"

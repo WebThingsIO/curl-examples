@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e
 
 read -p    "Enter    email: " USERNAME
 read -s -p "Enter password: " PASSWORD
