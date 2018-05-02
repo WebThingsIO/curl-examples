@@ -1,8 +1,10 @@
 This repository contains some simple bash scripts which demonstrate
 using the REST API of the gateway using curl.
 
-These examples all make use of https://gateway.local so if you renamed
-your gateway, then you'll need to adjust the scripts.
+When prompted for the URL, include the http: or https: and any ports. Some example URLs:
+* http://gateway.local:8080
+* https://mydomain.mozilla-iot.org
+* https://localhost:4343
 
 The --insecure is required when using gateway.local. If you instead use
 your NAME.mozilla-iot.org name then you no longer need to use --insecure.
@@ -10,6 +12,7 @@ your NAME.mozilla-iot.org name then you no longer need to use --insecure.
 # login.sh
 ```
 $ ./login.sh
+Enter      URL: https://mydomain.mozilla-iot.org
 Enter    email: your-email@company.com
 Enter password:
 ```

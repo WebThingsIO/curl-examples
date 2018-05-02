@@ -15,10 +15,16 @@ if [ -z "${VALUE}" ]; then
   exit 1
 fi
 
+if [ ! -e .url ]; then
+  echo "Please create the .url file using login.sh"
+  exit 1
+fi
+read URL < .url
+
 curl -H "Authorization:Bearer ${JWT}" \
  -H "Content-Type: application/json" \
  -H "Accept: application/json" \
  -X PUT -d '{"'${PROPERTY}'":'${VALUE}'}' \
  --insecure --silent \
- https://gateway.local/things/${THING}/properties/${PROPERTY} > /dev/null
+ ${URL}/things/${THING}/properties/${PROPERTY} > /dev/null
 

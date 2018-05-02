@@ -6,14 +6,6 @@ if [ ! -e .jwt ]; then
 fi
 read JWT < .jwt
 
-THING="$1"
-PROPERTY="$2"
-
-if [ -z "${PROPERTY}" ]; then
-  echo "Usage: get-property.sh THING PROPERTY"
-  exit 1
-fi
-
 if [ ! -e .url ]; then
   echo "Please create the .url file using login.sh"
   exit 1
@@ -24,4 +16,5 @@ curl -H "Authorization:Bearer ${JWT}" \
  -H "Content-Type: application/json" \
  -H "Accept: application/json" \
  --insecure --silent \
- ${URL}/things/${THING}/properties/${PROPERTY} | python -mjson.tool
+ ${URL}/settings/addonsInfo | python -mjson.tool
+
