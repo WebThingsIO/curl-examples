@@ -6,9 +6,15 @@ if [ ! -e .jwt ]; then
 fi
 read JWT < .jwt
 
+if [ ! -e .url ]; then
+  echo "Please create the .url file using login.sh"
+  exit 1
+fi
+read URL < .url
+
 curl -H "Authorization:Bearer ${JWT}" \
  -H "Content-Type: application/json" \
  -H "Accept: application/json" \
  --insecure --silent \
- https://gateway.local/things | python -mjson.tool
+ ${URL}/things | python -mjson.tool
 
