@@ -1,15 +1,9 @@
 #!/bin/bash -e
 
-if [ ! -e .jwt ]; then
-  echo "Please create the .jwt file using login.sh"
-  exit 1
+if [ ! -e .jwt ] || [ ! -e .url ] ; then
+  ./login.sh
 fi
 read JWT < .jwt
-
-if [ ! -e .url ]; then
-  echo "Please create the .url file using login.sh"
-  exit 1
-fi
 read URL < .url
 
 curl -H "Authorization:Bearer ${JWT}" \

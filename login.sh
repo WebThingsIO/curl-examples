@@ -1,14 +1,19 @@
 #!/bin/bash -e
 
-read -p    "Enter      URL: " URL
-read -p    "Enter    email: " USERNAME
-read -s -p "Enter password: " PASSWORD
+source ./common.sh
+
+URL=$(get_url)
+EMAIL=$(get_email)
+PASSWORD=$(get_password)
+
 echo
 
-curl -H "Content-Type: application/json" \
- -H "Accept: application/json" \
- -X POST -d '{"email": "'${USERNAME}'", "password": "'${PASSWORD}'"}' \
- --insecure --silent \
- ${URL}/login | python -c 'import json,sys; print(json.load(sys.stdin))["jwt"]' > .jwt
+JSON=$(curl -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -X POST -d "{\"email\": \"${EMAIL}\", \"password\": \"${PASSWORD}\"}" \
+    --insecure --silent \
+    "${URL}"/login)
+
+get_value > .jwt
 
 echo "${URL}" > .url
